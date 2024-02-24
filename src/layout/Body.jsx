@@ -69,53 +69,70 @@ export default function Body() {
         //     },
         // });
 
-        const userAddresses = await window.btc?.request('getAddresses');
+        try {
+            const userAddresses = await window.btc?.request('getAddresses');
 
-        const usersNativeSegwitAddress = userAddresses.result.addresses
-            .find(address => address.type === 'p2wpkh');
+            const usersNativeSegwitAddress = userAddresses.result.addresses
+                .find(address => address.type === 'p2wpkh');
 
-        console.log('usersNativeSegwitAddress ==> ', usersNativeSegwitAddress);
+            console.log('usersNativeSegwitAddress ==> ', usersNativeSegwitAddress);
 
-        const addressDetails = await fetch('https://mempool.space/api/address/' + usersNativeSegwitAddress.address);
-        console.log('addressDetails ==> ', addressDetails);
+            const addressDetails = await fetch('https://mempool.space/api/address/' + usersNativeSegwitAddress.address);
+            console.log('addressDetails ==> ', addressDetails);
+
+            toast.success("Connecting successfully");
+        } catch (error) {
+            toast.warn("Please install the leather wallet in your browser");
+        }
     }
 
     const connectUnisatWallet = async () => {
         try {
             let accounts = await window.unisat.requestAccounts();
             console.log('connect success', accounts);
+
+            toast.success("Connecting successfully");
         } catch (e) {
             console.log('connect failed');
+            toast.warn("Please install the unisat wallet in your browser");
         }
     }
 
     const connectXverseWallet = async () => {
-        console.log('Xverse wallet connection ==> ')
-        const getAddressOptions = {
-            payload: {
-                purposes: ["ordinals", "payment"],
-                message: "Address for receiving Ordinals",
-                network: {
-                    type: TEST_VERSION ? "Testnet" : "Mainnet",
+        try {
+            console.log('Xverse wallet connection ==> ')
+            const getAddressOptions = {
+                payload: {
+                    purposes: ["ordinals", "payment"],
+                    message: "Address for receiving Ordinals",
+                    network: {
+                        type: TEST_VERSION ? "Testnet" : "Mainnet",
+                    },
                 },
-            },
-            onFinish: (response) => {
-                console.log('response ==> ', response);
-                setOrdinalsAddress(response.addresses[0].address);
-                setOrdinalsPublicKey(response.addresses[0].publicKey);
-                setPaymentAddress(response.addresses[1].address);
-                setPaymentPublicKey(response.addresses[1].publicKey);
-                setUseWallet(1);
-                handleOpen();
-            },
-            onCancel: () => alert("Request canceled"),
-            onError: () => {
-                console.log("here");
-            },
-        };
-        await getAddress(getAddressOptions).catch((err) => {
-            toast.error(err.message);
-        });
+                onFinish: (response) => {
+                    console.log('response ==> ', response);
+                    setOrdinalsAddress(response.addresses[0].address);
+                    setOrdinalsPublicKey(response.addresses[0].publicKey);
+                    setPaymentAddress(response.addresses[1].address);
+                    setPaymentPublicKey(response.addresses[1].publicKey);
+                    setUseWallet(1);
+                    handleOpen();
+                    toast.success("Connecting successfully");
+                },
+                onCancel: () => {
+                    // alert("Request canceled");
+                    toast.warn("Connecting canceled");
+                },
+                onError: () => {
+                    toast.warn("Connecting failed with some errors");
+                },
+            };
+            await getAddress(getAddressOptions).catch((err) => {
+                toast.error(err.message);
+            });
+        } catch (error) {
+            toast.warn("Please insatll the Xverse wallet!!");
+        }
     };
 
     return (
@@ -146,6 +163,7 @@ export default function Body() {
                     </button>
                 </div>
             </Modal>
+            <ToastContainer />
         </>
     )
 }
