@@ -22,13 +22,13 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <div className="relative flex flex-col items-center flex-1">
+            <div className="relative flex flex-col items-center flex-1 min-[400px]:-ml-8 max-[400px]:-ml-12">
                 <h1 className="uppercase text-white text-2xl text-center flex justify-between w-3/4 max-w-[18rem] sm:w-full mx-auto mt-8">
                     <span>G</span><span>a</span><span>l</span><span>l</span><span>e</span><span>r</span><span>y</span>
                 </h1>
-                <img src="/assets/logo-white.png" alt="NoMe logo" className="w-3/4 max-w-[18rem] sm:w-full mx-auto mt-8" />
+                <img src="/assets/logo-white.png" alt="NoMe logo" className="w-3/4 max-w-[18rem] sm:w-full mx-auto mt-8 max-[600px]:hidden" />
             </div>
-            <div className="flex justify-end flex-1 pt-8 pr-12 gap-x-8">
+            <div className="flex justify-end flex-1 pt-8 pr-12 gap-x-8 max-[600px]:hidden">
                 <a href="https://#/nome_nft" target="_blank" previewlistener="true">
                     <img src="/assets/twitter-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />
                 </a>
