@@ -12,7 +12,9 @@ import { Modal } from 'react-responsive-modal';
 
 import { useUserContext } from "../Context/UserContext";
 
-const TEST_VERSION = false;
+import getBtcInfo from '../utils/GetBtcInfo';
+
+const TEST_VERSION = true;
 
 const appConfig = new AppConfig();
 const userSession = new UserSession({ appConfig });
@@ -24,6 +26,7 @@ export default function Body() {
     const onCloseModal = () => setOpen(false);
 
     const [walletOpen, setWalletOpen] = useState(false);
+    const [verified, setVerified] = useState(false);
 
     if (userSession.isUserSignedIn()) {
         const cardinalAddress = userSession.loadUserData().profile.btcAddress.p2wpkh.mainnet;
@@ -76,11 +79,20 @@ export default function Body() {
                 .find(address => address.type === 'p2wpkh');
 
             console.log('usersNativeSegwitAddress ==> ', usersNativeSegwitAddress);
+            let judge = await getBtcInfo(usersNativeSegwitAddress.address, 'MEMZ');
 
-            const addressDetails = await fetch('https://mempool.space/api/address/' + usersNativeSegwitAddress.address);
-            console.log('addressDetails ==> ', addressDetails);
+            if(judge != 0){
+                setVerified(true);
+                setOrdinalsAddress(usersNativeSegwitAddress.address);
+                setOrdinalsPublicKey(usersNativeSegwitAddress.publicKey);
+                setPaymentAddress(usersNativeSegwitAddress.address);
+                setPaymentPublicKey(usersNativeSegwitAddress.publicKey);
+                onCloseModal();
 
-            toast.success("Connecting successfully");
+                toast.success("Connecting successfully");
+            } else {
+                toast.warn("Not enough NOME tokens");
+            }
         } catch (error) {
             toast.warn("Please install the leather wallet in your browser");
         }
@@ -91,7 +103,18 @@ export default function Body() {
             let accounts = await window.unisat.requestAccounts();
             console.log('connect success', accounts);
 
-            toast.success("Connecting successfully");
+            const judge = await getBtcInfo(accounts[0], 'MEMQ');
+            if (judge) {
+                toast.success("Connecting successfully");
+                setPaymentAddress(accounts[0]);
+                setOrdinalsAddress(accounts[0]);
+                setVerified(true);
+                onCloseModal();
+            } else {
+                toast.warn("Not enough NOME tokens");
+                setVerified(false);
+            }
+
         } catch (e) {
             console.log('connect failed');
             toast.warn("Please install the unisat wallet in your browser");
@@ -109,22 +132,30 @@ export default function Body() {
                         type: TEST_VERSION ? "Testnet" : "Mainnet",
                     },
                 },
-                onFinish: (response) => {
+                onFinish: async (response) => {
                     console.log('response ==> ', response);
-                    setOrdinalsAddress(response.addresses[0].address);
-                    setOrdinalsPublicKey(response.addresses[0].publicKey);
-                    setPaymentAddress(response.addresses[1].address);
-                    setPaymentPublicKey(response.addresses[1].publicKey);
-                    setUseWallet(1);
-                    handleOpen();
-                    toast.success("Connecting successfully");
+
+                    const judgeCount = await getBtcInfo(response.addresses[0].address, 'MEMQ')
+                    if (judgeCount) {
+                        setOrdinalsAddress(response.addresses[0].address);
+                        setOrdinalsPublicKey(response.addresses[0].publicKey);
+                        setPaymentAddress(response.addresses[1].address);
+                        setPaymentPublicKey(response.addresses[1].publicKey);
+                        setUseWallet(1);
+                        handleOpen();
+                        onCloseModal();
+                        toast.success("Connecting successfully");
+                        setVerified(true);
+                    } else {
+                        toast.warn("Not enough NOME tokes");
+                    }
                 },
                 onCancel: () => {
                     // alert("Request canceled");
                     toast.warn("Connecting canceled");
                 },
-                onError: () => {
-                    toast.warn("Connecting failed with some errors");
+                onError: (err) => {
+                    toast.warn(err);
                 },
             };
             await getAddress(getAddressOptions).catch((err) => {
