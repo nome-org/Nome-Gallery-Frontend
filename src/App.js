@@ -34,7 +34,7 @@ function App() {
         setOrdinalDerivationPath,
       }}
     >
-      <div className="bg-black max-w-[1600px]">
+      <div className="bg-black max-w-[2000px] mx-auto">
         <Header />
         <Body />
       </div>

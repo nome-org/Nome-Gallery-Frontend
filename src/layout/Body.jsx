@@ -14,8 +14,8 @@ import { useUserContext } from "../Context/UserContext";
 
 import getBtcInfo from '../utils/GetBtcInfo';
 
-// import AliceCarousel from 'react-alice-carousel';
-// import 'react-alice-carousel/lib/alice-carousel.css';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 const TEST_VERSION = true;
 
@@ -29,7 +29,7 @@ export default function Body() {
     const onCloseModal = () => setOpen(false);
 
     const [walletOpen, setWalletOpen] = useState(false);
-    const [verified, setVerified] = useState(false);
+    const [verified, setVerified] = useState(true);
     const [mint, setMint] = useState(false);
 
     if (userSession.isUserSignedIn()) {
@@ -154,44 +154,221 @@ export default function Body() {
         }
     };
 
-    // const responsive = {
-    //     0: { items: 1 },
-    //     568: { items: 2 },
-    //     1024: { items: 3 },
-    // };
+    // Carousel
+    const [popup, setPopup] = useState(true);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    // const items = [
-    //     <div className="item" data-value="1">
-    //         <img className='' src='/assets/Collection/1.png'></img>
-    //     </div>,
-    //     <div className="item" data-value="2">
-    //         <img className='' src='/assets/Collection/1.png'></img>
-    //     </div>,
-    //     <div className="item" data-value="3">
-    //         <img className='' src='/assets/Collection/1.png'></img>
-    //     </div>,
-    //     <div className="item" data-value="4">
-    //         <img className='' src='/assets/Collection/1.png'></img>
-    //     </div>,
-    //     <div className="item" data-value="5">
-    //         <img className='' src='/assets/Collection/1.png'></img>
-    //     </div>,
-    // ];
+    const setOpenPopup = (index) => {
+        setPopup(true);
+        setActiveIndex(index);
+    }
 
-    // const Carousel = () => (
-    //     <AliceCarousel
-    //         mouseTracking
-    //         items={items}
-    //         responsive={responsive}
-    //         controlsStrategy="alternate"
-    //     />
-    // );
+    const responsive = {
+        0: { items: 1 },
+        568: { items: 3 },
+        1024: { items: 5 },
+    };
+
+    const items = [
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(1)}
+            data-value="1"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/1.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(2)}
+            data-value="2"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/2.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(3)}
+            data-value="3"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/3.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(4)}
+            data-value="4"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/4.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(5)}
+            data-value="5"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/5.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(6)}
+            data-value="6"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/6.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(7)}
+            data-value="7"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/7.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(8)}
+            data-value="8"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/8.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(9)}
+            data-value="9"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/9.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(10)}
+            data-value="10"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/10.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(11)}
+            data-value="1"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/11.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(12)}
+            data-value="2"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/12.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(13)}
+            data-value="3"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/13.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(14)}
+            data-value="4"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/14.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(15)}
+            data-value="5"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/15.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(16)}
+            data-value="6"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/16.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(17)}
+            data-value="7"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/17.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(18)}
+            data-value="8"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/18.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(19)}
+            data-value="9"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/19.webp'></img>
+            </div>
+        </div>,
+        <div
+            className="item bg-neutral-800 w-[180px] rounded-xl mx-auto"
+            onClick={() => setOpenPopup(20)}
+            data-value="10"
+        >
+            <div className='w-[100px] h-[220px] mx-auto py-[10px]'>
+                <img className='w-[100px] h-[200px]' src='/assets/Collection/20.webp'></img>
+            </div>
+        </div>,
+    ];
+
+    const Carousel = () => (
+        <AliceCarousel
+            mouseTracking
+            items={items}
+            responsive={responsive}
+            controlsStrategy="alternate"
+        />
+    );
 
     return (
         <div className='w-full'>
+            <div className='mx-auto'>
+                <img src="/assets/logo-white.png" alt="NoMe logo" className="w-3/4 max-w-[18rem] sm:w-full mx-auto mt-8 min-[600px]:hidden" />
+            </div>
             {!verified ?
                 <>
-                    <div className="max-w-4xl px-8 mx-auto mt-12 text-xl italic text-center text-white sm:text-3xl sm:mt-28 font-sans-serif">
+                    <div className="max-w-4xl px-8 mx-auto min-[600px]:mt-12 text-xl italic text-center text-white sm:text-3xl sm:mt-28 font-sans-serif">
                         <h2 className="leading-[1.7] tracking-[0.055em]"> Welcome to the NōME gallery – a space for premium 1/1 art and unique digital experiences </h2>
                         <h2 className="mt-9 leading-[1.7] tracking-[0.055em]"> $NOME BRC-20 gives access to gallery <br /> exhibitions and art tools. Verify or buy tokens to enter </h2>
                     </div>
@@ -221,30 +398,30 @@ export default function Body() {
                 </>
                 :
                 <div className='px-10'>
-                    <div className='flex min-[750px]:flex-row max-[750px]:flex-col w-full justify-between bg-black text-white mt-40 min-[1350px]:px-40 min-[1000px]:px-20 mb-10'>
+                    <div className='flex min-[750px]:flex-row max-[750px]:flex-col w-full justify-between bg-black text-white mt-40 max-[600px]:mt-10 min-[1350px]:px-40 min-[1000px]:px-20 mb-10'>
                         {/* Left Side */}
                         <div className='flex flex-col text-white text-left min-[750px]:w-1/2 max-[750px]:w-full'>
-                            <p className='text-[40px] max-[750px]:mx-auto'>
+                            <p className='text-[36px] max-[750px]:mx-auto'>
                                 CIRCLE WALLS
                             </p>
                             <p className="text-[20px] max-[750px]:mx-auto text-justify">
                                 Walls - collectible phone wallpapers
                             </p>
                             {/* List */}
-                            <ul className='mt-10 list-disc ml-4 text-[20px]'>
-                                <li className='mt-2'>
+                            <ul className='mt-10 list-disc ml-4 text-[20px] max-[750px]:mx-auto'>
+                                <li className='mt-2 text-justify'>
                                     10 unique designs / delegated editions
                                 </li>
-                                <li className='mt-2'>
+                                <li className='mt-2 text-justify'>
                                     24 hours each image / supply on demand
                                 </li>
-                                <li className='mt-2'>
+                                <li className='mt-2 text-justify'>
                                     0.0002 $BTC / 1,000 $N0ME (~$10)
                                 </li>
                             </ul>
                             <div className='flex flex-col w-1/2 ml-10 mt-20 min-[750px]:mb-32 max-[750px]:w-full max-[750px]:mx-auto'>
                                 <p className='text-gray-600 text-[28px] text-center'>
-                                    {mint ? <>#1 MINT TIME LEFT</> : <>MINT IS OPEN IN</>}
+                                    {!mint ? <>#1 MINT TIME LEFT</> : <>MINT IS OPEN IN</>}
                                 </p>
                                 {/* Counter */}
                                 <div className='flex flex-row text-white min-[750px]:w-full max-[750px]:w-1/2 max-[750px]:mx-auto justify-center'>
@@ -261,7 +438,7 @@ export default function Body() {
                                     </div>
                                 </div>
                                 {/* buttons */}
-                                <div className='flex flex-col gap-4 min-[750px]:w-full max-[750px]:w-1/2 text-white my-20 mx-auto'>
+                                <div className='flex flex-col gap-4 min-[750px]:w-full max-[750px]:w-1/2 max-[400px]:w-2/3 text-white my-20 mx-auto'>
                                     {mint ?
                                         <>
                                             <div className='border border-white rounded-md hover:text-slate-500 p-1 text-center duration-300 cursor-pointer hover:border-slate-500'>
@@ -286,13 +463,12 @@ export default function Body() {
                         <div className='flex flex-col min-[500px]:w-1/2 max-[500px]:w-3/4 max-[400px]:w-full mx-auto'>
                             <img className='min-[1180px]:min-w-[500px] max-[1180px]:min-w-[400px] max-[870px]:min-w-[300px] max-[700px]:min-w-[0px] scale-100' src='/assets/mobile.png'></img>
                             <div className='w-full mt-8'>
-                                <p className='w-2/3 text-white text-center p-1 mx-auto border border-white'>
-                                    {mint ?
-                                        <>
-                                            Minted - 11 editions
-                                        </> :
-                                        <></>}
-                                </p>
+                                {mint ?
+                                    <p className='w-2/3 text-white text-center p-1 mx-auto border border-white'>
+                                        Minted - 11 editions:
+                                    </p> :
+                                    <></>
+                                }
                             </div>
                         </div>
                     </div>
@@ -302,7 +478,7 @@ export default function Body() {
                             Explre the full collection
                         </p>
                         {/* carousel */}
-                        {/* <Carousel /> */}
+                        <Carousel />
                         <a
                             className='text-gray-500 text-right'
                             href='https://magiceden.io/ordinals/marketplace/nomeart'
@@ -356,6 +532,13 @@ export default function Body() {
                                 <img src="/assets/leather-icon-9a4d5194.png" className="h-8" /> Leather
                             </button>
                         </div>
+                    </Modal>
+                    <Modal open={popup} onClose={() => setPopup(false)} center>
+                        <img
+                            src={`/assets/Collection/${activeIndex}.webp`}
+                            className='mt-10'
+                        >
+                        </img>
                     </Modal>
                     <ToastContainer />
                 </div>}
