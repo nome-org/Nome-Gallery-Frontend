@@ -1,10 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@font-face {
+  font-family: 'Menoe_Grotesque-Regular_Italic-Web';
+  src: url(../public/assets/fonts/Menoe_Grotesque-Regular_Italic-Web.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Menoe_Grotesque_Pro-Regular_TypeToday';
+  src: url(../public/assets/fonts/Menoe_Grotesque_Pro-Regular_TypeToday.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald-VariableFont_wght';
+  src: url(../public/assets/fonts/Oswald-VariableFont_wght.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Menoe_Grotesque_Pro-Regular_TypeToday',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
