@@ -35,7 +35,7 @@ function App() {
       }}
     >
       <div className="bg-black max-w-[2000px] mx-auto">
-        <Header />
+        {/*<Header />*/}
         <Body />
       </div>
     </UserContext.Provider>

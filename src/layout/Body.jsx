@@ -362,7 +362,7 @@ export default function Body() {
     );
 
     return (
-        <div className='w-full'>
+        <div className='w-full pt-6'>
             <div className='mx-auto'>
                 <img src="/assets/logo-white.png" alt="NoMe logo" className="w-3/4 max-w-[18rem] sm:w-full mx-auto mt-8 min-[600px]:hidden" />
             </div>
@@ -398,7 +398,7 @@ export default function Body() {
                 </>
                 :
                 <div className='px-10'>
-                    <div className='flex min-[750px]:flex-row max-[750px]:flex-col w-full justify-between bg-black text-white mt-40 max-[600px]:mt-10 min-[1350px]:px-40 min-[1000px]:px-20 mb-10'>
+                    <div className='flex min-[750px]:flex-row max-[750px]:flex-col w-full justify-between bg-black text-white   min-[1350px]:px-40 min-[1000px]:px-20 mb-10'>
                         {/* Left Side */}
                         <div className='flex flex-col text-white text-left min-[750px]:w-1/2 max-[750px]:w-full'>
                             <p className='text-[36px] max-[750px]:mx-auto'>
@@ -473,7 +473,7 @@ export default function Body() {
                         </div>
                     </div>
                     {/* carousel */}
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col pb-4'>
                         <p className='text-white mb-6'>
                             Explre the full collection
                         </p>
@@ -487,38 +487,38 @@ export default function Body() {
                         </a>
                     </div>
                     {/* Our partners */}
-                    <div className='flex flex-col mt-20'>
-                        <div className='w-full h-1 border border-t-2 border-b-0 border-l-0 border-r-0 border-gray-600'></div>
-                        <p className='text-white italic -mt-4 ml-8'>
-                            OUR PARTNERS
-                        </p>
-                        <div className='flex min-[820px]:flex-row max-[820px]:flex-col items-center justify-between px-4 mb-10'>
-                            {/* Left partner */}
-                            <div className='flex min-[660px]:flex-row max-[660px]:flex-col justify-start gap-4 my-4'>
-                                <div className='flex items-center border border-white px-12 py-2'>
-                                    <img src='/assets/Partners/xverse.png' className='w-[60px]'></img>
-                                </div>
-                                <div className='flex items-center border border-white px-12 py-2'>
-                                    <img src='/assets/Partners/unisat.png' className='w-[60px]'></img>
-                                </div>
-                                <div className='flex items-center border border-white px-12 py-2'>
-                                    <img src='/assets/Partners/ordinalsbot.png' className='w-[100px]'></img>
-                                </div>
-                            </div>
-                            {/* Right partner */}
-                            <div className="flex flex-row gap-4">
-                                <a href="https://#/nome_nft" target="_blank" previewlistener="true">
-                                    <img src="/assets/twitter-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />
-                                </a>
-                                <a href="https://discord.gg/nome" target="_blank" previewlistener="true">
-                                    <img src="/assets/discord-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />
-                                </a>
-                                <a href="https://#/@nome_nft" target="_blank" previewlistener="true">
-                                    <img src="/assets/youtube-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    {/*<div className='flex flex-col mt-20'>*/}
+                    {/*    <div className='w-full h-1 border border-t-2 border-b-0 border-l-0 border-r-0 border-gray-600'></div>*/}
+                    {/*    <p className='text-white italic -mt-4 ml-8'>*/}
+                    {/*        OUR PARTNERS*/}
+                    {/*    </p>*/}
+                    {/*    <div className='flex min-[820px]:flex-row max-[820px]:flex-col items-center justify-between px-4 mb-10'>*/}
+                    {/*        /!* Left partner *!/*/}
+                    {/*        <div className='flex min-[660px]:flex-row max-[660px]:flex-col justify-start gap-4 my-4'>*/}
+                    {/*            <div className='flex items-center border border-white px-12 py-2'>*/}
+                    {/*                <img src='/assets/Partners/xverse.png' className='w-[60px]'></img>*/}
+                    {/*            </div>*/}
+                    {/*            <div className='flex items-center border border-white px-12 py-2'>*/}
+                    {/*                <img src='/assets/Partners/unisat.png' className='w-[60px]'></img>*/}
+                    {/*            </div>*/}
+                    {/*            <div className='flex items-center border border-white px-12 py-2'>*/}
+                    {/*                <img src='/assets/Partners/ordinalsbot.png' className='w-[100px]'></img>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*        /!* Right partner *!/*/}
+                    {/*        <div className="flex flex-row gap-4">*/}
+                    {/*            <a href="https://#/nome_nft" target="_blank" previewlistener="true">*/}
+                    {/*                <img src="/assets/twitter-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />*/}
+                    {/*            </a>*/}
+                    {/*            <a href="https://discord.gg/nome" target="_blank" previewlistener="true">*/}
+                    {/*                <img src="/assets/discord-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />*/}
+                    {/*            </a>*/}
+                    {/*            <a href="https://#/@nome_nft" target="_blank" previewlistener="true">*/}
+                    {/*                <img src="/assets/youtube-icon.png" alt="" className="hover:opacity-80 transition-all opacity-50 w-[1.6rem] h-[1.6rem] invert" />*/}
+                    {/*            </a>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <Modal open={open} onClose={onCloseModal} center>
                         <div className="flex flex-col items-center w-full max-w-xs p-8 text-black bg-white rounded shadow opacity-90">
                             <h2 className="mb-8 text-3xl italic font-sans-serif">Select a wallet</h2>
