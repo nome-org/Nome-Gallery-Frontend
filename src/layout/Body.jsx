@@ -14,6 +14,8 @@ import { useUserContext } from "../Context/UserContext";
 
 import getBtcInfo from '../utils/GetBtcInfo';
 
+import EmailForm from '../utils/EmailCheck';
+
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
@@ -454,6 +456,9 @@ export default function Body() {
                                             </div>
                                             <div className='border border-white rounded-md text-black bg-white hover:text-slate-500 p-1 text-center duration-300 cursor-pointer hover:border-slate-500' onClick={() => onOpenModal()}>
                                                 BUY with $BTC
+                                            </div>
+                                            <div>
+                                            <EmailForm />
                                             </div>
                                         </>}
                                 </div>
